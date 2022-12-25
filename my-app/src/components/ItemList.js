@@ -13,6 +13,7 @@ import { getProducts } from './ProductStock'
     export const ItemList = () => {
             const [showProducts, setShowProducts] = useState();
             const productId = useParams().id;
+           
             // const {categoryId} = useParams();
 
 
@@ -44,3 +45,4 @@ import { getProducts } from './ProductStock'
             );
         };
         
+       

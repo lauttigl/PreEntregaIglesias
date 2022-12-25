@@ -1,17 +1,15 @@
 import React,{ useState, useEffect} from 'react'
+import { Item } from './Item';
 
 
-const Counter = () => {
-    const [cuenta, setCuenta] = useState(0);
+const Counter = ({initial, stock, onAdd}) => {
+    const [cuenta, setCuenta] = useState(initial);
 return (
-    <div>
-        
-<button  onClick={ () =>setCuenta (cuenta + 1)} className="btn btn-active">Agregar</button>
-<h2>{cuenta}</h2>
-<button onClick={ () =>setCuenta (cuenta - 1)} className="btn">Quitar</button>
-
-
-        
+    <div>  
+    <button disabled={cuenta <=0}onClick={ () =>setCuenta (cuenta - 1)} className="btn"> - </button>
+    <span className='text-lg'>{cuenta}</span>
+    <button  disabled={cuenta >= stock}onClick={ () =>setCuenta (cuenta + 1)} className="btn btn-active"> + </button>
+    
     </div>
 )
 }

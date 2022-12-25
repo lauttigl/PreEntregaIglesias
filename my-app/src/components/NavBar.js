@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { Cart } from './Cart'
 
 export const NavBar = () => {
 return (
@@ -30,7 +31,9 @@ return (
         <span className="font-bold text-lg">2 Items</span>
         <span className="text-info">Subtotal: $12500</span>
         <div className="card-actions">
+            <Link to='/products/cart'>
             <button className="btn btn-primary btn-block">Ver mi Carrito</button>
+            </Link>
         </div>
         </div>
     </div>
