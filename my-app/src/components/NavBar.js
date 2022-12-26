@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { CartContext, useCart } from '../context/cartContext'
 import { Cart } from './Cart'
 
 export const NavBar = () => {
+
+    const { totalProductosCarrito } = useContext(CartContext)
+
 return (
     <div className="navbar bg-base-100">
 <div className="flex-1">
@@ -28,8 +32,8 @@ return (
     </label>
     <div tabIndex={0} className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow">
         <div className="card-body">
-        <span className="font-bold text-lg">2 Items</span>
-        <span className="text-info">Subtotal: $12500</span>
+        <span className="font-bold text-lg">{totalProductosCarrito}</span>
+        <span className="text-info"></span>
         <div className="card-actions">
             <Link to='/products/cart'>
             <button className="btn btn-primary btn-block">Ver mi Carrito</button>

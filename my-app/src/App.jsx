@@ -4,10 +4,10 @@ import Counter from './components/Counter';
 import Footer from './components/Footer';
 import { BrowserRouter, Routes , Route,  } from 'react-router-dom';
 import ItemListContainer from './components/ItemListContainer';
-import ItemDetailContainer from './components/ItemDetailContainer';
 import { ItemDetail, ItemList } from './components/ItemList';
 import { Item } from './components/Item';
 import { Cart } from './components/Cart';
+import { CartContextProvider } from './context/cartContext';
 
 
 
@@ -18,8 +18,8 @@ import { Cart } from './components/Cart';
 
 export const App = () => {
   return (
-    
-      <BrowserRouter>
+    <CartContextProvider>
+    <BrowserRouter>
     <NavBar/>
     <Routes>
     <Route path='/' element={<ItemListContainer/>}/> 
@@ -29,6 +29,7 @@ export const App = () => {
     </Routes>
     <Footer/>
     </BrowserRouter>
+    </CartContextProvider>
     
   )
 }

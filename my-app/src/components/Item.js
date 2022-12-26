@@ -13,7 +13,9 @@ export const Item = (props) => {
     const {addToCart} = useCart()
 
     const addHandler = () => { 
-        addToCart(product.id)
+        // addToCart(product.id)
+        addToCart(product.name)
+        addToCart(product.imageSrc)
         
     }
 

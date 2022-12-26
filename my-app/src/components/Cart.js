@@ -1,5 +1,6 @@
 import React from 'react'
 import {  useCart } from '../context/cartContext'
+import { CartContext } from '../context/cartContext'
 
 
 
@@ -7,7 +8,7 @@ import {  useCart } from '../context/cartContext'
 
 export const Cart = () => {
 
-    const { items, clearCart } = useCart()
+    const { items, clearCart} = useCart()
 
 
     return (
