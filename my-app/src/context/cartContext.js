@@ -7,7 +7,6 @@ const CartContext = React.createContext({
     items: [],
     addToCart : () => {},
     clearCart : () => {},
-    
 })
 
 
@@ -22,10 +21,20 @@ const CartContextProvider = ({children}) => {
 
 
     const addToCart = ( item ) => { 
-        setItems( items => items.concat(item))
+        console.log(item)
+        const productToAdd = inCart(item.id)
+
+        if(productToAdd) {
+            productToAdd.quantity = item.quantity
+            setItems([...items])
+        } else {
+            setItems( items => items.concat(item))
+        }
     }
+    
 
     const inCart = (id) => items.find(product => product.id == id);
+
 
     const totalProductosCarrito = () => {
         return items.reduce((acc, products) => acc + products.cantidad, 0)
@@ -35,11 +44,13 @@ const CartContextProvider = ({children}) => {
         return items.reduce((acc, products) => acc + products.cantidad * products.price, 0)
     }
 
-    const removeItem = (id) => setItems(setItems.filter(product => product.id !==id));
+    const removeItem = ({id}) => setItems(setItems.filter(product => product.id !==id));
+    
 
     const clearCart = () => { 
         setItems( [] )
     }
+
 
     const context = {
         items: items,
@@ -58,7 +69,7 @@ const CartContextProvider = ({children}) => {
             {children}
         </CartContext.Provider>
     )
-    }
-
+    
+    }  
 export { CartContextProvider, useCart, CartContext}
-
+    
