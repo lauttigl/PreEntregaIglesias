@@ -3,7 +3,7 @@ import {useState, useEffect,} from 'react'
 import { products } from './ProductStock'
 import { Item } from './Item'
 import { useParams } from 'react-router-dom'
-import { getProducts } from './ProductStock'
+
 
 
 

@@ -7,6 +7,7 @@ const CartContext = React.createContext({
     items: [],
     addToCart : () => {},
     clearCart : () => {},
+    contadorCarrito : () => {},
 })
 
 
@@ -32,21 +33,27 @@ const CartContextProvider = ({children}) => {
         }
     }
     
-
+    // ESTA CONST BUSCA SI ESTA EL PRODUCTO EN EL CARRITO, SI ESTA SUMA LA CANTIDAD
     const inCart = (id) => items.find(product => product.id == id);
 
-
-    const totalProductosCarrito = () => {
-        return items.reduce((acc, products) => acc + products.cantidad, 0)
-    }
-    
-    const totalPrecioCarrito = () => { 
-        return items.reduce((acc, products) => acc + products.cantidad * products.price, 0)
+    //ESTA SACA PRODUCTOS DE FORMA INDIVIDUAL DEL CARRITO
+    const removeItem = (id) => {
+        const newItems = items.filter(product => product.id != id);
+        setItems(newItems);
     }
 
-    const removeItem = ({id}) => setItems(setItems.filter(product => product.id !==id));
-    
 
+    //ESTA FUNCION CALCULA EL TOTAL A PAGAR
+    const calculateTotal = () => {
+        return items.reduce((total, item) => total + item.quantity * item.price,0);
+        }
+        
+        const contadorCarrito = () => {
+            return items.reduce((total, item) => total + item.quantity, 0);
+        }
+        
+
+    //ESTA FUNCION VACIA EL CARRITO COMPLETO
     const clearCart = () => { 
         setItems( [] )
     }
@@ -58,8 +65,9 @@ const CartContextProvider = ({children}) => {
         clearCart : clearCart,
         inCart : inCart,
         removeItem : removeItem,
-        totalPrecioCarrito: totalPrecioCarrito,
-        totalProductosCarrito: totalProductosCarrito
+        calculateTotal: calculateTotal,
+        contadorCarrito : contadorCarrito,
+        
     }
 
 

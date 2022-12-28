@@ -41,7 +41,7 @@ import { Link } from 'react-router-dom';
                             />
                             </div>
                             <h3 className= "mt-1 text-lg font-medium text-gray-900">{product.name}</h3>
-                            <p className="mt-4 text-lg text-gray-700">{product.price} 
+                            <p className="mt-4 text-lg text-gray-700">Precio: ${product.price} 
                             </p>
                             <Link to={`/products/${product.id}`}>
                             <button className="btn btn-active" >Ver producto</button>

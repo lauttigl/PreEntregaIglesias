@@ -26,10 +26,9 @@ export const Item = (props) => {
 <figure><img className='object-scale-down h-80 w-80 'src={product.imageSrc} alt={product.imageAlt}/></figure>
     <div className="card-body place-items-center" key={product.id}>
     <h2 className="card-title">{product.name}</h2>
-    <p className='text-lg'>{product.price}</p>
+    <p className='text-lg'>Precio: ${product.price}</p>
     <p className='text-lg'>En Stock: {product.stock} unidades </p>
     <Counter initial={0} stock={product.stock} onAdd={addHandler}/>
-    {/* <p><button  className="btn btn-active" onClick={addHandler} disabled={product.stock <= 0} >Añadir al carrito</button></p> */}
 </div>
 </div>
     );
