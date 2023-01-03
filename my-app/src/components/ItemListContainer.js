@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { products } from './ProductStock';
 import Cat from './Cat';
 import { Link } from 'react-router-dom';
+import {getFirestore, doc, getDoc, collection, getDocs,} from 'firebase/firestore'
 
 
     
@@ -10,27 +11,53 @@ import { Link } from 'react-router-dom';
     //ESTE SERIA EL CATALOGO (HOME) MUESTRA TODOS LOS PRODUCTOS
     const ItemListContainer = () => {
 
-        const {idCategory} = useParams();
-        const [productList, seTProductList] = useState();
-        const [loading, setLoading] = useState(true);
+
+        //ESTE ES EL CODIGO ORIGINAL QUE FUNCIONA
+
+        // const {idCategory} = useParams();
+        // const [productList, seTProductList] = useState();
+        // const [loading, setLoading] = useState(true);
         
 
-        useEffect(() => {
-        idCategory === undefined ?
-                        seTProductList(products)
-                        :
-                        seTProductList(products.filter((product) => product.category == idCategory))
-                        setTimeout(() => {
-                            setLoading(false)
-                        }, 3000);
-        }, [idCategory])
+        // useEffect(() => {
+        // idCategory === undefined ?
+        //                 seTProductList(products)
+        //                 :
+        //                 seTProductList(products.filter((product) => product.category == idCategory))
+        //                 setTimeout(() => {
+        //                     setLoading(false)
+        //                 }, 3000);
+        // }, [idCategory])
+
+
+
         
+//ACA EMPIEZA CON EL CODIGO CON FIREBASE
+const [itemData, setItemData] = useState([])
+
+
+
+  //SE MONTA AL INICIAR EL COMPONENTE
+useEffect(() => {
+getItems()
+}, [])
+
+//CUANDO SE MONTA EL COMPONENTE CON EL USEFFECT TRAIGO ESTA FUNCION QUE CONTIENE LA COLECCION DE ITEMS
+const getItems = async () => {  
+const dataBase= getFirestore()
+const collectionRef = collection (dataBase, 'items')
+const snapshot = await getDocs(collectionRef)
+setItemData(snapshot.docs.map(d => ({id:d.id, ...d.data()  } )))
+
+}
+
         
 
 
 
 
-        return( loading ? <>Cargando...</>:
+        return(
+            //  loading ? <>Cargando...</>:
             <div className="bg-white">
                     <Cat/>
                     <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
@@ -38,12 +65,12 @@ import { Link } from 'react-router-dom';
                     <h2 className="sr-only">Products</h2>
                     
                     <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-                        {productList.map((product) => (
+                        {itemData.map((product) => (
                         <div key={product.id} href={product.href} className="group">
                             <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
                             <img
-                                src={product.imageSrc}
-                                alt={product.imageAlt}
+                                src={product.image}
+                                // alt={product.imageAlt}
                                 className="h-full w-full object-cover object-center group-hover:opacity-75"
                             />
                             </div>

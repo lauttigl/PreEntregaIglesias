@@ -1,8 +1,8 @@
 import React from 'react'
 import {useState, useEffect,} from 'react'
-import { products } from './ProductStock'
 import { Item } from './Item'
 import { useParams } from 'react-router-dom'
+import ItemListContainer from './ItemListContainer'
 
 
 
@@ -26,7 +26,7 @@ import { useParams } from 'react-router-dom'
             }, []);
         
             // USA EL ID DEL PRODUCTO PARA TRAER EL PRODUCTO ESPECIFICO
-            const product = products.find(( product) => product.id == productId);
+            const product = product.find(( product) => product.id == productId);
             
             
             

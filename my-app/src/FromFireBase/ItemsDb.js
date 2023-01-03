@@ -30,11 +30,11 @@ setItemData(snapshot.docs.map(d => ({id:d.id, ...d.data()  } )))
     
       <>
       <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-      {itemData.map( i => <div key={i.id} className="group"> 
-      <h3 className= "mt-1 text-lg font-medium text-gray-900">{i.name}</h3>
-      <p className="mt-4 text-lg text-gray-700">Precio: ${i.price} </p>
-      <p className="mt-4 text-lg text-gray-700">Stock: {i.stock} </p>
-                      <Link to={`/masvendidos/${i.id}`}>
+      {itemData.map( product => <div key={product.id} className="group"> 
+      <h3 className= "mt-1 text-lg font-medium text-gray-900">{product.name}</h3>
+      <p className="mt-4 text-lg text-gray-700">Precio: ${product.price} </p>
+      <p className="mt-4 text-lg text-gray-700">Stock: {product.stock} </p>
+                      <Link to={`/masvendidos/${product.id}`}>
                     <button className="btn btn-active" >Ver producto</button>
                     </Link>
       </div> )}
