@@ -13,7 +13,7 @@ import {getFirestore, doc, getDoc, collection, getDocs, query, where} from 'fire
 // ESTE COMPONENTE TRAE EL ID DEL PRODUCTO PARA IDENTIFICARLO Y MUESTRA A <ITEM/>
     export const ItemList = () => {
             //ESTO ES CON FIREBASE
-            const [data, setData] = useState([])
+            const [product, setData] = useState([])
             const {categoriaId} = useParams()
 
         useEffect(() => {
@@ -32,7 +32,7 @@ import {getFirestore, doc, getDoc, collection, getDocs, query, where} from 'fire
 //         USA EL ID DEL PRODUCTO PARA TRAER EL PRODUCTO ESPECIFICO
             return (
             <div>
-                <Item product={data}  />
+                <Item product={product}  />
             </div>
             );
         };
