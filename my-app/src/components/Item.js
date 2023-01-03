@@ -1,15 +1,28 @@
 import React from 'react'
 import Counter from './Counter';
 import { useCart } from '../context/cartContext';
+import {getFirestore, doc, getDoc, collection, getDocs,} from 'firebase/firestore'
+import { useEffect, useState , useParams} from 'react';
 
 
 
 
 // ESTE DEBE MOSTRAR EL ITEM DE FORMA INDIVIDUAL
 // SI SE NAVEGA POR LAS RUTAS ANTERIORES HASTA EL /:ID (ID DE CUALQUIER PRODUCTO) MUESTRA ESTE COMPONENTE
-export const Item = (props) => {
-    const { product } = props;
+export const Item = () => {
+    // ESTA FUNCION SERVIA SIN FIREBASE const { product } = props;
+    // const {categoriaId} = useParams()
+    const [product, setData] = useState({})
     const {addToCart} = useCart()
+
+
+    useEffect(() => {
+        const dataBase= getFirestore()
+        const collectionRef = collection (dataBase, 'items')
+        getDocs(collectionRef)
+        .then(res=> setData(res.docs.map(product =>  ({id:product.id, ...product.data()  } ))))
+    }, [])
+
 
     const addHandler = (qty) => { 
         
@@ -23,7 +36,7 @@ export const Item = (props) => {
     return (
 
 <div className="card lg:card-compact bg-base-100 shadow-xl">
-<figure><img className='object-scale-down h-80 w-80 'src={product.imageSrc} alt={product.imageAlt}/></figure>
+<figure><img className='object-scale-down h-80 w-80 'src={product.image} alt={product.imageAlt}/></figure>
     <div className="card-body place-items-center" key={product.id}>
     <h2 className="card-title">{product.name}</h2>
     <p className='text-lg'>Precio: ${product.price}</p>

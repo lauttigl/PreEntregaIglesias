@@ -54,6 +54,7 @@ const getItems = async () => {
         setCategoryFilter(category);
         setItemData(itemData.filter(product => product.id == idCategory));
         filterProducts()
+        
     }
     
 }

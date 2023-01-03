@@ -1,8 +1,9 @@
 import React from 'react'
 import {useState, useEffect,} from 'react'
 import { Item } from './Item'
-import { useParams } from 'react-router-dom'
+import { useFetcher, useParams } from 'react-router-dom'
 import ItemListContainer from './ItemListContainer'
+import {getFirestore, doc, getDoc, collection, getDocs, query, where} from 'firebase/firestore'
 
 
 
@@ -11,34 +12,27 @@ import ItemListContainer from './ItemListContainer'
 // AL CLICKEAR EN VER PRODUCTO DE ITEMLISTCONTAINER NOS TRAE ACA Y MUESTRA ESTE COMPONENTE
 // ESTE COMPONENTE TRAE EL ID DEL PRODUCTO PARA IDENTIFICARLO Y MUESTRA A <ITEM/>
     export const ItemList = () => {
-            const [showProducts, setShowProducts] = useState();
-            const productId = useParams().id;
-        
+            //ESTO ES CON FIREBASE
+            const [data, setData] = useState([])
+            const {categoriaId} = useParams()
 
-
-//             ESTA FUNCION ES PARA QUE USE LOS PARAMETROS QUE LE INDIcAMOS MAS ABAJO AL DEFINIR CATEGORYID
-            
-        
-            useEffect(() => {
-//             ESPERA 2 SEGUNDOS PARA VER SI SETSHOWPRODUCTS ES VERDADERO, SI ES TRUE LOS CARGA PASADO EL TIEMPO
-            setTimeout(() => setShowProducts(true), 2000);
-            
-            }, []);
-        
-//             USA EL ID DEL PRODUCTO PARA TRAER EL PRODUCTO ESPECIFICO
-            const product = product.find(( product) => product.id == productId);
-            
-            
-            
-        
-//             SI SHOWPRODUCTS ES FALSO NO RETORNA NADA
-            if (!showProducts) return null;
-
+        useEffect(() => {
+            const dataBase= getFirestore()
+            const collectionRef = collection (dataBase, 'items')
+            if (categoriaId){
+            const queryFilter = query(collectionRef, where('category', '==', 'categoriaId'))
+            getDocs(queryFilter)
+                .then(res=> setData(res.docs.map(product =>  ({id:product.id, ...product.data()  } ))))
+            } else {
+            getDocs(collectionRef)
+            .then(res=> setData(res.docs.map(product =>  ({id:product.id, ...product.data()  } ))))
+            }
+        }, [categoriaId])
 
 //         USA EL ID DEL PRODUCTO PARA TRAER EL PRODUCTO ESPECIFICO
             return (
             <div>
-                <Item product={product} />
+                <Item product={data}  />
             </div>
             );
         };
