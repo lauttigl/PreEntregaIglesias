@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { CartContext, useCart } from '../context/cartContext'
+import {  useCart } from '../context/cartContext'
 
 
 export const NavBar = () => {
@@ -14,15 +14,18 @@ return (
     <div className="navbar bg-base-100">
 <div className="flex-1">
     <Link to={'/'}>
-    <div className="btn btn-ghost normal-case text-xl">PetShop</div>
+    <div className="btn btn-ghost normal-case text-xl">Maia PetShop</div>
     </Link>
 </div>
 <div className='flex-none'>
     <Link to={`category/perro`}>
-    <li> Alimento para perros</li>
+    <li className='p-4'> Alimento para perros</li>
     </Link>
     <Link to={`category/gato`}>
     <li> Alimento para Gatos </li>
+    </Link>
+    <Link to={`/masvendidos`}>
+    <li className='p-4'> Mas vendidos </li>
     </Link>
 </div>
 <div className="flex-none">

@@ -25,11 +25,9 @@ export const Cart = () => {
                             </div>)}
                             <div className='text-center'>
                             <h3 className='text-2xl font-bold '>Total a pagar: ${total}</h3>
-                                <button className='btn bg-green-600 m-6 '>Comprar</button><button className='btn bg-red-600'onClick={clearCart}>Vaciar Carrito</button>
+                                <button className='btn bg-green-600 m-6 '>Finalizar compra</button>
+                                <button className='btn bg-red-600'onClick={clearCart}>Vaciar Carrito</button>
                                 </div>
-                                
-                                
-                            
                     </div>
         
     )

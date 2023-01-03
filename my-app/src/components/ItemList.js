@@ -14,7 +14,6 @@ import { useParams } from 'react-router-dom'
             const [showProducts, setShowProducts] = useState();
             const productId = useParams().id;
         
-            // const {categoryId} = useParams();
 
 
             //ESTA FUNCION ES PARA QUE USE LOS PARAMETROS QUE LE INDIcAMOS MAS ABAJO AL DEFINIR CATEGORYID
@@ -29,8 +28,7 @@ import { useParams } from 'react-router-dom'
             // USA EL ID DEL PRODUCTO PARA TRAER EL PRODUCTO ESPECIFICO
             const product = products.find(( product) => product.id == productId);
             
-            //ESTO DEBERIA TRAER LA CATEOGRIA 
-            // const productsInCategory = products.filter((product) => product.category == categoryId)
+            
             
         
             // SI SHOWPRODUCTS ES FALSO NO RETORNA NADA

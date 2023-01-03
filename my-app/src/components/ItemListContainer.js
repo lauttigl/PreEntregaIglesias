@@ -1,5 +1,5 @@
 import React, {useState , useEffect}from 'react'
-import { BrowseRouter, Routes, Route, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { products } from './ProductStock';
 import Cat from './Cat';
 import { Link } from 'react-router-dom';
@@ -9,9 +9,11 @@ import { Link } from 'react-router-dom';
 
     //ESTE SERIA EL CATALOGO (HOME) MUESTRA TODOS LOS PRODUCTOS
     const ItemListContainer = () => {
+
         const {idCategory} = useParams();
         const [productList, seTProductList] = useState();
         const [loading, setLoading] = useState(true);
+        
 
         useEffect(() => {
         idCategory === undefined ?
@@ -23,6 +25,11 @@ import { Link } from 'react-router-dom';
                         }, 3000);
         }, [idCategory])
         
+        
+
+
+
+
         return( loading ? <>Cargando...</>:
             <div className="bg-white">
                     <Cat/>
