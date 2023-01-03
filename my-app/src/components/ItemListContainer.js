@@ -8,8 +8,7 @@ import {getFirestore, doc, getDoc, collection, getDocs,} from 'firebase/firestor
 
     
 
-    //ESTE SERIA EL CATALOGO (HOME) MUESTRA TODOS LOS PRODUCTOS
-    const ItemListContainer = () => {
+    
 
 
         //ESTE ES EL CODIGO ORIGINAL QUE FUNCIONA
@@ -30,10 +29,13 @@ import {getFirestore, doc, getDoc, collection, getDocs,} from 'firebase/firestor
         // }, [idCategory])
 
 
+//ESTE SERIA EL CATALOGO (HOME) MUESTRA TODOS LOS PRODUCTOS
+const ItemListContainer = () => {
 
-        
 //ACA EMPIEZA CON EL CODIGO CON FIREBASE
 const [itemData, setItemData] = useState([])
+const [categoryFilter, setCategoryFilter] = useState()
+const {idCategory} = useParams();
 
 
 
@@ -44,17 +46,17 @@ getItems()
 
 //CUANDO SE MONTA EL COMPONENTE CON EL USEFFECT TRAIGO ESTA FUNCION QUE CONTIENE LA COLECCION DE ITEMS
 const getItems = async () => {  
-const dataBase= getFirestore()
-const collectionRef = collection (dataBase, 'items')
-const snapshot = await getDocs(collectionRef)
-setItemData(snapshot.docs.map(d => ({id:d.id, ...d.data()  } )))
-
+    const dataBase= getFirestore()
+    const collectionRef = collection (dataBase, 'items')
+    const snapshot = await getDocs(collectionRef)
+    setItemData(snapshot.docs.map(d => ({id:d.id, ...d.data()  } )))
+    const filterProducts = (category) => { 
+        setCategoryFilter(category);
+        setItemData(itemData.filter(product => product.id == idCategory));
+        filterProducts()
+    }
+    
 }
-
-        
-
-
-
 
         return(
             //  loading ? <>Cargando...</>:

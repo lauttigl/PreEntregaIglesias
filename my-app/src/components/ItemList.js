@@ -8,34 +8,34 @@ import ItemListContainer from './ItemListContainer'
 
 
 
-//AL CLICKEAR EN VER PRODUCTO DE ITEMLISTCONTAINER NOS TRAE ACA Y MUESTRA ESTE COMPONENTE
-//ESTE COMPONENTE TRAE EL ID DEL PRODUCTO PARA IDENTIFICARLO Y MUESTRA A <ITEM/>
+// AL CLICKEAR EN VER PRODUCTO DE ITEMLISTCONTAINER NOS TRAE ACA Y MUESTRA ESTE COMPONENTE
+// ESTE COMPONENTE TRAE EL ID DEL PRODUCTO PARA IDENTIFICARLO Y MUESTRA A <ITEM/>
     export const ItemList = () => {
             const [showProducts, setShowProducts] = useState();
             const productId = useParams().id;
         
 
 
-            //ESTA FUNCION ES PARA QUE USE LOS PARAMETROS QUE LE INDIcAMOS MAS ABAJO AL DEFINIR CATEGORYID
+//             ESTA FUNCION ES PARA QUE USE LOS PARAMETROS QUE LE INDIcAMOS MAS ABAJO AL DEFINIR CATEGORYID
             
         
             useEffect(() => {
-            //ESPERA 2 SEGUNDOS PARA VER SI SETSHOWPRODUCTS ES VERDADERO, SI ES TRUE LOS CARGA PASADO EL TIEMPO
+//             ESPERA 2 SEGUNDOS PARA VER SI SETSHOWPRODUCTS ES VERDADERO, SI ES TRUE LOS CARGA PASADO EL TIEMPO
             setTimeout(() => setShowProducts(true), 2000);
             
             }, []);
         
-            // USA EL ID DEL PRODUCTO PARA TRAER EL PRODUCTO ESPECIFICO
+//             USA EL ID DEL PRODUCTO PARA TRAER EL PRODUCTO ESPECIFICO
             const product = product.find(( product) => product.id == productId);
             
             
             
         
-            // SI SHOWPRODUCTS ES FALSO NO RETORNA NADA
+//             SI SHOWPRODUCTS ES FALSO NO RETORNA NADA
             if (!showProducts) return null;
 
 
-        // USA EL ID DEL PRODUCTO PARA TRAER EL PRODUCTO ESPECIFICO
+//         USA EL ID DEL PRODUCTO PARA TRAER EL PRODUCTO ESPECIFICO
             return (
             <div>
                 <Item product={product} />
@@ -43,4 +43,3 @@ import ItemListContainer from './ItemListContainer'
             );
         };
         
-    

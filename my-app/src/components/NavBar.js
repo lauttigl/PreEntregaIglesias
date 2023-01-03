@@ -24,9 +24,6 @@ return (
     <Link to={`category/gato`}>
     <li> Alimento para Gatos </li>
     </Link>
-    <Link to={`/masvendidos`}>
-    <li className='p-4'> Mas vendidos </li>
-    </Link>
 </div>
 <div className="flex-none">
     <div className="dropdown dropdown-end">

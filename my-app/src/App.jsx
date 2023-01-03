@@ -7,7 +7,7 @@ import {  ItemList } from './components/ItemList';
 import { Cart } from './components/Cart';
 import { CartContextProvider } from './context/cartContext';
 import { initializeApp } from "firebase/app";
-import  ItemsDb  from './FromFireBase/ItemsDb';
+
 
 
 const firebaseConfig = {
@@ -39,7 +39,6 @@ export const App = () => {
     <Route path='/products/:id' element={<ItemList/>}/> 
     <Route path='/products/cart' element={<Cart/>}/>
     <Route path='/category/:idCategory' element={<ItemListContainer/>}/>
-    <Route path='/masvendidos/' element={<ItemsDb/>}/>
 
     </Routes>
     <Footer/>
