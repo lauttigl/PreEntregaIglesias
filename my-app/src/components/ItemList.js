@@ -32,7 +32,10 @@ import {getFirestore, doc, getDoc, collection, getDocs, query, where} from 'fire
 //         USA EL ID DEL PRODUCTO PARA TRAER EL PRODUCTO ESPECIFICO
             return (
             <div>
-                <Item product={product}  />
+                {/* <Item product={product}  /> */}
+                
+        <Item key={product.id} product={product} />
+ 
             </div>
             );
         };

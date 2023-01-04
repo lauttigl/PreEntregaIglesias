@@ -9,19 +9,20 @@ import { useEffect, useState , useParams} from 'react';
 
 // ESTE DEBE MOSTRAR EL ITEM DE FORMA INDIVIDUAL
 // SI SE NAVEGA POR LAS RUTAS ANTERIORES HASTA EL /:ID (ID DE CUALQUIER PRODUCTO) MUESTRA ESTE COMPONENTE
-export const Item = () => {
-    // ESTA FUNCION SERVIA SIN FIREBASE const { product } = props;
+export const Item = (props) => {
+    // ESTA FUNCION SERVIA SIN FIREBASE 
+    const { product } = props;
     // const {categoriaId} = useParams()
-    const [product, setData] = useState({})
+    // const [product, setProduct] = useState({})
     const {addToCart} = useCart()
 
 
-    useEffect(() => {
-        const dataBase= getFirestore()
-        const collectionRef = collection (dataBase, 'items')
-        getDocs(collectionRef)
-        .then(res=> setData(res.docs.map(product =>  ({id:product.id, ...product.data()  } ))))
-    }, [])
+    // useEffect(() => {
+    //     const dataBase= getFirestore()
+    //     const collectionRef = collection (dataBase, 'items')
+    //     getDocs(collectionRef)
+    //     .then((res) => setProduct(res.docs.map((product) => ({ id: product.id, ...product.data() }))));
+    // }, []);
 
 
     const addHandler = (qty) => { 
