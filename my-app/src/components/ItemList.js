@@ -13,19 +13,20 @@ import {getFirestore, doc, getDoc, collection, getDocs, query, where} from 'fire
 // ESTE COMPONENTE TRAE EL ID DEL PRODUCTO PARA IDENTIFICARLO Y MUESTRA A <ITEM/>
     export const ItemList = () => {
             //ESTO ES CON FIREBASE
-            const [product, setData] = useState([])
-            // const {categoriaId} = useParams()
+            const [product, setProduct] = useState([])
+            const {id} = useParams()
 
         useEffect(() => {
-        getItems()
+        getProduct()
             
         }, [])
 
-        const getItems = async () => {
+        const getProduct = async () => {
             const dataBase= getFirestore()
-            const document = doc(dataBase, 'items')
-            const snapshot = await getDoc(document)
-            setData(snapshot.doc.map(d => ({id:d.id, ...d.data()  } )))
+            const document = doc(dataBase, 'items',id)
+            const response = await getDoc(document)
+            const result = {id: response.id, ...response.data()}
+            setProduct(result)
         }
 //         USA EL ID DEL PRODUCTO PARA TRAER EL PRODUCTO ESPECIFICO
             return (
