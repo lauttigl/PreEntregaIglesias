@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { products } from './ProductStock';
 import Cat from './Cat';
 import { Link } from 'react-router-dom';
-import {getFirestore, doc, getDoc, collection, getDocs,} from 'firebase/firestore'
+import {getFirestore, doc, getDoc, collection, getDocs, where, query} from 'firebase/firestore'
 
 
     
@@ -41,8 +41,8 @@ const {idCategory} = useParams();
 
   //SE MONTA AL INICIAR EL COMPONENTE
 useEffect(() => {
-getItems()
-}, [])
+    idCategory?getItemsCategory():getItems()
+}, [idCategory])
 
 //CUANDO SE MONTA EL COMPONENTE CON EL USEFFECT TRAIGO ESTA FUNCION QUE CONTIENE LA COLECCION DE ITEMS
 const getItems = async () => {  
@@ -50,13 +50,13 @@ const getItems = async () => {
     const collectionRef = collection (dataBase, 'items')
     const snapshot = await getDocs(collectionRef)
     setItemData(snapshot.docs.map(d => ({id:d.id, ...d.data()  } )))
-    const filterProducts = (category) => { 
-        setCategoryFilter(category);
-        setItemData(itemData.filter(product => product.id == idCategory));
-        filterProducts()
-        
-    }
-    
+}
+
+const getItemsCategory = async () => {
+    const dataBase = getFirestore()
+    const collectionRef = query(collection(dataBase, 'items'), where ('category', '==', 'idCategory'))
+    const snapshot = await getDocs(collectionRef)
+    setItemData(snapshot.docs.map(d => ({id: d.id, ...d.data()})))
 }
 
         return(
