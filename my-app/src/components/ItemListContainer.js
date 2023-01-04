@@ -34,7 +34,7 @@ const ItemListContainer = () => {
 
 //ACA EMPIEZA CON EL CODIGO CON FIREBASE
 const [itemData, setItemData] = useState([])
-const [categoryFilter, setCategoryFilter] = useState()
+// const [categoryFilter, setCategoryFilter] = useState()
 const {idCategory} = useParams();
 
 
@@ -54,7 +54,7 @@ const getItems = async () => {
 
 const getItemsCategory = async () => {
     const dataBase = getFirestore()
-    const collectionRef = query(collection(dataBase, 'items'), where ('category', '==', 'idCategory'))
+    const collectionRef = query(collection(dataBase, 'items'), where ('category', '==', idCategory))
     const snapshot = await getDocs(collectionRef)
     setItemData(snapshot.docs.map(d => ({id: d.id, ...d.data()})))
 }
