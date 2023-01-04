@@ -14,28 +14,26 @@ import {getFirestore, doc, getDoc, collection, getDocs, query, where} from 'fire
     export const ItemList = () => {
             //ESTO ES CON FIREBASE
             const [product, setData] = useState([])
-            const {categoriaId} = useParams()
+            // const {categoriaId} = useParams()
 
         useEffect(() => {
-            const dataBase= getFirestore()
-            const collectionRef = collection (dataBase, 'items')
-            if (categoriaId){
-            const queryFilter = query(collectionRef, where('category', '==', 'categoriaId'))
-            getDocs(queryFilter)
-                .then(res=> setData(res.docs.map(product =>  ({id:product.id, ...product.data()  } ))))
-            } else {
-            getDocs(collectionRef)
-            .then(res=> setData(res.docs.map(product =>  ({id:product.id, ...product.data()  } ))))
-            }
-        }, [categoriaId])
+        getItems()
+            
+        }, [])
 
+        const getItems = async () => {
+            const dataBase= getFirestore()
+            const document = doc(dataBase, 'items')
+            getDoc(document)
+            .then(res=> setData(res.docs.map(product =>  ({id:product.id, ...product.data()  } ))))
+        }
 //         USA EL ID DEL PRODUCTO PARA TRAER EL PRODUCTO ESPECIFICO
             return (
             <div>
-                {/* <Item product={product}  /> */}
+                <Item product={product}  />
                 
-        <Item key={product.id} product={product} />
- 
+        {/* <Item key={product.id} product={product} /> */}
+
             </div>
             );
         };
