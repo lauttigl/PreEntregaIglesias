@@ -24,8 +24,8 @@ import {getFirestore, doc, getDoc, collection, getDocs, query, where} from 'fire
         const getItems = async () => {
             const dataBase= getFirestore()
             const document = doc(dataBase, 'items')
-            getDoc(document)
-            .then(res=> setData(res.docs.map(product =>  ({id:product.id, ...product.data()  } ))))
+            const snapshot = await getDoc(document)
+            setData(snapshot.doc.map(d => ({id:d.id, ...d.data()  } )))
         }
 //         USA EL ID DEL PRODUCTO PARA TRAER EL PRODUCTO ESPECIFICO
             return (
