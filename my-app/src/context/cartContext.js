@@ -59,6 +59,8 @@ const CartContextProvider = ({children}) => {
     }
 
 
+    
+
     const context = {
         items: items,
         addToCart : addToCart,
