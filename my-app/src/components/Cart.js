@@ -27,9 +27,9 @@ export const Cart = () => {
                             <div className='text-center'>
                             <h3 className='text-2xl font-bold '>Total a pagar: ${total}</h3>
                                 <Link to='checkout'>
-                                <button className='btn bg-green-600 m-6 '>Finalizar compra</button>
+                                <button className='btn bg-violet-500 m-6 '>Finalizar compra</button>
                                 </Link>
-                                <button className='btn bg-red-600'onClick={clearCart}>Vaciar Carrito</button>
+                                <button className='btn bg-violet-500 m-6'onClick={clearCart}>Vaciar Carrito</button>
                                 </div>
                     </div>
         

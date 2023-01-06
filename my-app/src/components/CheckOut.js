@@ -33,12 +33,12 @@ const CheckOut = () => {
 
   return (
     <>
-      <h1>
+      <h1 className='text-center'>
         Vas a pagar: ${total}. Para continuar, completa el formulario. Luego de realizar la compra se te dará un código de
         comprobante.
       </h1>
-      <form className="p-4 border-gray-300">
-        <label htmlFor="nombre" className="block font-bold mb-2">
+      <form className="p-4 border-gray-300 items-center">
+        <label htmlFor="nombre" className=" block font-bold mb-2 ">
           Nombre y Apellido:
         </label>
         <input
@@ -86,7 +86,7 @@ const CheckOut = () => {
           onChange={(e) => setPhone(e.target.value)}
         />
         <br />
-<label htmlFor="my-modal-6" className="btn" onClick={makeOrder}>Comprar!</label>
+<label htmlFor="my-modal-6" className="btn" onClick={makeOrder} disabled={name.length == 0}>Comprar!</label>
 <input type="checkbox" id="my-modal-6" className="modal-toggle" />
 <div className="modal modal-bottom sm:modal-middle">
   <div className="modal-box">

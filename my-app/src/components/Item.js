@@ -1,8 +1,7 @@
 import React from 'react'
 import Counter from './Counter';
 import { useCart } from '../context/cartContext';
-import {getFirestore, doc, getDoc, collection, getDocs,} from 'firebase/firestore'
-import { useEffect, useState , useParams} from 'react';
+
 
 
 
@@ -12,17 +11,9 @@ import { useEffect, useState , useParams} from 'react';
 export const Item = (props) => {
     // ESTA FUNCION SERVIA SIN FIREBASE 
     const { product } = props;
-    // const {categoriaId} = useParams()
-    // const [product, setProduct] = useState({})
+
     const {addToCart} = useCart()
 
-
-    // useEffect(() => {
-    //     const dataBase= getFirestore()
-    //     const collectionRef = collection (dataBase, 'items')
-    //     getDocs(collectionRef)
-    //     .then((res) => setProduct(res.docs.map((product) => ({ id: product.id, ...product.data() }))));
-    // }, []);
 
 
     const addHandler = (qty) => { 
@@ -36,7 +27,7 @@ export const Item = (props) => {
 
     return (
 
-<div className="card lg:card-compact bg-base-100 shadow-xl">
+<div className="card lg:card-side  bg-indigo shadow-xl card-bordered border-black m-10 ">
 <figure><img className='object-scale-down h-80 w-80 'src={product.image} alt={product.imageAlt}/></figure>
     <div className="card-body place-items-center" key={product.id}>
     <h2 className="card-title">{product.name}</h2>

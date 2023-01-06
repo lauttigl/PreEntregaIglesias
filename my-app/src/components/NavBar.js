@@ -11,10 +11,10 @@ export const NavBar = () => {
     
 
 return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-violet-100">
 <div className="flex-1">
     <Link to={'/'}>
-    <div className="btn btn-ghost normal-case text-xl">Maia PetShop</div>
+    <div className="btn btn-ghost normal-case text-xl">Puppy PetShop</div>
     </Link>
 </div>
 <div className='flex-none'>
@@ -39,7 +39,7 @@ return (
         <span className="text-info"></span>
         <div className="card-actions">
             <Link to='/products/cart'>
-            <button className="btn btn-primary btn-block">Ver mi Carrito</button>
+            <button className="btn btn-primary  bg-gray-400">Ver mi Carrito</button>
             </Link>
         </div>
         </div>
