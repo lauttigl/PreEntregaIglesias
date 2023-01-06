@@ -41,7 +41,7 @@ return (
             <Link to='/products/cart'>
             <button className="btn btn-primary  bg-gray-400">Ver mi Carrito</button>
             </Link>
-        </div>
+    </div>
         </div>
     </div>
     </div>
