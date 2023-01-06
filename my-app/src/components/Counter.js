@@ -15,7 +15,7 @@ return (
                 <div className="modal-box bg-violet-100">
                 <h2 className="text-3xl text-center">El producto se agregó al carrito!</h2>
                 <div className="modal-action">
-                <label htmlFor="my-modal" className="btn bg-black-400">Seguir comprando</label>
+                <label htmlFor="my-modal" className="btn bg-gray-400">Seguir comprando</label>
                 </div>
                 </div>
                 </div>
