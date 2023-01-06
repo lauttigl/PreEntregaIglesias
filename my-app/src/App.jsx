@@ -12,12 +12,12 @@ import CheckOut from './components/CheckOut';
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB-8v1WT471goA1L8-oH-ccphTPB3-1izg",
-  authDomain: "ecommerce-5984c.firebaseapp.com",
-  projectId: "ecommerce-5984c",
-  storageBucket: "ecommerce-5984c.appspot.com",
-  messagingSenderId: "544430900670",
-  appId: "1:544430900670:web:d30ed036215bf68e65a5ef"
+  apiKey: process.env.REACT_APP_APIKEY,
+  authDomain: process.env.REACT_APP_AUTHDOMAIN,
+  projectId: process.env.REACT_APP_PROJECTID,
+  storageBucket: process.env.REACT_APP_STORAGEBUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGINGSENDERID,
+  appId: process.env.REACT_APP_APPID
 };
 
 // Initialize Firebase
